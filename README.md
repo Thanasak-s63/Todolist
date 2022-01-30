@@ -15,3 +15,7 @@
 ทำการสร้าง folder controllers และ todo.controller.js เพื่อจัดการเป็นตัวกลางระหว่าง model กับส่วนของ view(ในที่นี้คือส่วนของ react) โดยข้างในก็จะมีการ export function การทำงานต่างๆโดยที่มีการรับค่า response กับ request นั่นคือเป็น function ที่ทำงานเป็น milddleware เช่น create ทำหน้าที่เพิ่มข้อมูลลง database, findAll ทำหน้าที่ค้นหาทั้งหมดใน database แบบมีเงื่อนไข, findOne ทำหน้าที่หาข้อมูลใน database โดยใช้ id, update ทำหน้าที่ update ข้อมูลใน database โดยแก้ตาม id, delete ทำหน้าที่ลบข้อมูลใน database โดยลบตาม id, deleteAll ทำหน้าที่ลบข้อมูลทั้งหมดใน database, findAllFinished ทำหน้าที่ค้นหาข้อมูลโดยเลือกเฉพาะที่ attribute finished เป็น true
 
 แก้ไขทุกจุดที่มีการใช้คำว่า published เป็น finished โดยมีในที่ todo.model.js และ todo.controller.js
+
+# Commit 5 : Create express router
+
+import function ต่างๆจาก todo.controller.js เก็บไว้ที่ตัวแปร todo จากนั้นสร้าง router โดยเอามาจาก express เพื่อใช้ในการเปลี่ยน url โดย post request ไปที่ url "/" ในการเรียกใช้ todo.create, get request ไปที่ url "/" ในการเรียกใช้ todo.findAll, get request ไปที่ url "/finished" ในการเรียกใช้ todo.findAllFinished, get request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.findOne , put request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.update , delete request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.delete , delete request ไปที่ url "/" ในการเรียกใช้ todo.deleteAll สุดท้ายใช้ app.use ส่งค่า url "/api/todo" กับตัว router เป็นการตั้งค่าให้ baseURL ขึ้นต้นด้วย /api/todo ก่อนที่จะเป็น url อื่นๆที่กล่าวมา
