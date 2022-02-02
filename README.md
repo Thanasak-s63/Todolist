@@ -79,3 +79,16 @@ function
 - deleteTodo ฟังก์ชันสำหรับลบข้อมูลใน database ของทั้ง row นั้นตาม argument ที่ส่งค่า id เข้าไป <br>
 
 จากนั้นทำการ render ช่อง input 2 ตัว โดยมีค่า default จาก prevState, status, และ ปุ่มสำหรับ อัพเดตและลบข้อมูล
+
+# Commit 11 : Create AddTodo component for adding data
+import TodoListDataService มาใช้เพื่อให้เราสามารถส่ง http request ไป backend ได้ จากนั้นสร้าง Addtodo ที่เป็น Class component โดยก็จะมี ฟังค์ชันต่างๆมากมายซึ่งจะอธิบายต่อไป
+และมีการประกาศ state โดยมี id, title ,description, finished, submitted โดย 4 ตัวแรกเป็นค่าที่เราจะตั้งเพื่อสร้างข้อมูลลง database ส่วน submitted เป็น state ไว้เช็คว่าส่งแล้วหรือไม่
+- onChangeTitle เป็นฟังค์ชันที่รับ event ของ input แล้วไปเปลี่ยนตัว state ของ title ซึ่งเป็นการเปลี่ยนค่า title ตามที่เราพิมพ์ลงไปในช่อง input
+- onChangeDescription เหมือน onChangeTitle แต่เป้นการเปลี่ยนค่า description แทน
+- saveTodo ทำหน้าที่นำค่า title และ description จาก state มาแล้วส่งไปผ่าน TodoListDataService.create(data) เป็นการ request เพื่อสร้างข้อมูลลงใน database หลังจากนั้น
+ก็จะเปลี่ยน state ทั้งหมดตามข้อมูลที่ backend ส่งกลับมา แล้ว เปลี่ยน summitted เป็น true ว่าส่งแล้ว ก็คือเป็นการบันทีกข้อมูลที่เรากรอกไปนั่นเอง
+- newTodo เป็นการล้าง state ทั้งหมดกลับไปเป็นค่า default นั่นคือเป็นการ ล้าง input ที่เราใส่เพื่อให้เรากรอกใหม่
+
+ต่อมาในส่วนของการ render เริ่มแรกจะมีการเช็คว่า state summitted เป็น true หรือ false ถ้า true จะแสดงผลเป็นปุ่ม ADD แล้วมี onClick เป็น ฟังค์ชัน newTodo เป็นการล้าง
+state ส่งผลให้ summited กลายเป็น false ซึ่งจะเข้ากรณีต่อไปคือ เมื่อเป็น false จะสร้างแบบ form ให้พิมพ์ข้อมูล title และ description โดยแต่ละอันจะมี onChange เป้น 
+ฟังค์ชัน onChangeTitle onChangeDescription ตามลำดับ และ สุดท้ายก็จะมีปุ่ม Submit โดยจะมี onClick เป็น saveTodo ก็คือบันทึกข้อมูลลงไป database นั่นเอง
