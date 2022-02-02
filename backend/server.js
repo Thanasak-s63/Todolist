@@ -15,6 +15,13 @@ app.use(bodyParser.json()); // request type json express send json
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const db = require("./app/models");
+
+db.sequelize.sync();
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log("Drop and re-sync db.");
+// });
+
 //simple route
 app.get("/", (req, res) => { // req = request  res = respone
     res.json({ message: "Welcome to TodoList Application." });
