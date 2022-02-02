@@ -19,3 +19,14 @@
 # Commit 5 : Create express router
 
 import function ต่างๆจาก todo.controller.js เก็บไว้ที่ตัวแปร todo จากนั้นสร้าง router โดยเอามาจาก express เพื่อใช้ในการเปลี่ยน url โดย post request ไปที่ url "/" ในการเรียกใช้ todo.create, get request ไปที่ url "/" ในการเรียกใช้ todo.findAll, get request ไปที่ url "/finished" ในการเรียกใช้ todo.findAllFinished, get request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.findOne , put request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.update , delete request ไปที่ url "/:id" โดยที่เป็น dynamic url ส่งค่า id มาให้เพื่อใช้ใน todo.delete , delete request ไปที่ url "/" ในการเรียกใช้ todo.deleteAll สุดท้ายใช้ app.use ส่งค่า url "/api/todo" กับตัว router เป็นการตั้งค่าให้ baseURL ขึ้นต้นด้วย /api/todo ก่อนที่จะเป็น url อื่นๆที่กล่าวมา
+
+# Commit 6 : Setup React for frontend
+
+สร้าง React โปรเจคโดยใช้ คำสั่ง npx create-react-app react-crud จากนั้นทำการลบไฟล์ที่ไม่จำเป็นและแก้ไขโค้ดที่ต่อไปถึงไฟล์นั้น โดยมี
+- App.test.js
+- logo.svg
+- reportWebVitals.js
+- setupTests.js <br>
+- logo.png ทั้งหมดใน folder public
+
+จากนั้นแก้ไขโค้ดในส่วนของ App.js โดยลบทั้งหมดใน return แล้วใส่แค่ div tag <br>
